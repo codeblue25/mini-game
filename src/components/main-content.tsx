@@ -1,4 +1,8 @@
-export default function MainContent() {
+export default function MainContent({
+  children,
+}: {
+  children?: React.ReactNode;
+}) {
   return (
     <section
       className="
@@ -7,14 +11,10 @@ export default function MainContent() {
         overflow-hidden
         px-4
         pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)]
-        bg-blue-50
+        bg-blue-50 border-2 border-indigo-500
       "
     >
-      <div className="w-full">
-        <h1 className="font-semibold text-[24px] sm:text-[28px] md:text-[32px]">
-          Hello !
-        </h1>
-      </div>
+      <div className="w-full">{children}</div>
     </section>
   );
 }
