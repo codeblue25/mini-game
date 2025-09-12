@@ -1,8 +1,11 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import SettingModal from "@/components/setting-modal";
 import TrophyModal from "@/components/trophy-modal";
 
 export default function Header() {
+  const navigate = useNavigate();
+
   const [openSetting, setOpenSetting] = useState(false);
   const [openTrophy, setOpenTrophy] = useState(false);
 
@@ -12,6 +15,10 @@ export default function Header() {
   const toggleTrophy = () => {
     setOpenTrophy((prev) => !prev);
   };
+  const moveToGatcha = () => {
+    navigate("/gatcha");
+  };
+
   return (
     <>
       <header className="w-full sticky top-0 z-10 flex items-center justify-between px-4 py-2 bg-white/80 backdrop-blur border-b">
@@ -23,7 +30,7 @@ export default function Header() {
         </div>
         <div>
           <button onClick={toggleTrophy}>업적</button>
-          <button>상점</button>
+          <button onClick={moveToGatcha}>상점</button>
         </div>
       </header>
 

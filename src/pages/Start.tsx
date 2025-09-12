@@ -1,6 +1,13 @@
 import Header from "@/components/header";
+import { useNavigate } from "react-router-dom";
 
 export default function Start() {
+  const navigate = useNavigate();
+
+  const moveToReady = () => {
+    navigate("/ready");
+  };
+
   return (
     <>
       <header className="w-full sticky top-0 z-10">
@@ -9,6 +16,7 @@ export default function Start() {
 
       <div className="flex flex-col items-center justify-center h-[calc(100vh-4rem)]">
         <button
+          onClick={() => moveToReady()}
           className="
             font-semibold text-[24px] sm:text-[28px] md:text-[32px]
             px-6 py-3 rounded-2xl
