@@ -1,3 +1,4 @@
+import { createUser } from "@/api/user";
 import { ModalBase } from "@/components/modal-base";
 import { useEffect, useState } from "react";
 
@@ -23,9 +24,14 @@ export default function TrophyModal({ onClose }: { onClose: () => void }) {
     setNickname(saved);
   }, []);
 
-  const saveNickname = () => {
+  const saveNickname = async () => {
     localStorage.setItem("nickname", nickname.trim());
-    alert("닉네임이 저장되었습니다!");
+    try {
+      const user = await createUser({ nickname });
+      console.log("닉네임 저장 성공:", user);
+    } catch (err) {
+      console.error("닉네임 저장 실패:", err);
+    }
   };
 
   return (
