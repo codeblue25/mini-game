@@ -8,7 +8,7 @@ export default function Ready() {
   };
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col items-center justify-center h-full">
       <h1>게임 준비 페이지</h1>
       <span>떡볶이 재료 선택</span>
 
