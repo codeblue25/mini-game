@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 
 export default function App() {
   return (
-    <section className="w-screen h-svh overflow-hidden bg-red-50 flex items-center justify-center">
+    <section className="w-screen min-h-dvh overflow-hidden bg-red-50 flex items-center justify-center safe-area">
       <MainContent>
         <Outlet />
       </MainContent>
