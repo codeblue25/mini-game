@@ -3,15 +3,12 @@ import { useEffect, useState } from "react";
 import { getLatestGameSession, CreateGameSessionRes } from "@/api/game_session";
 import { useNavigate, useLocation } from "react-router-dom";
 import Header from "@/components/header";
-import SettingModal from "@/components/setting-modal";
-import TrophyModal from "@/components/trophy-modal";
+import Floating from "@/components/floating";
 
 export default function Result() {
   const [session, setSession] = useState<CreateGameSessionRes | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [openSetting, setOpenSetting] = useState(false);
-  const [openTrophy, setOpenTrophy] = useState(false);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -26,16 +23,6 @@ export default function Result() {
 
   // ⚠️ 실제 로그인/스토어에서 가져오세요
   const userId = 1;
-
-  const toggleSetting = () => {
-    setOpenSetting((prev) => !prev);
-  };
-  const toggleTrophy = () => {
-    setOpenTrophy((prev) => !prev);
-  };
-  const moveToGatcha = () => {
-    navigate("/gatcha");
-  };
 
   useEffect(() => {
     let aborted = false;
@@ -84,37 +71,13 @@ export default function Result() {
         <div className="relative w-full h-full flex flex-col">
           <Header />
           <div className="flex-1 bg-green-200 flex items-center justify-center relative">
-            <div className="absolute left-4 top-1/4 transform -translate-y-1/2 flex flex-col space-y-3 z-10">
-              <button
-                onClick={toggleSetting}
-                className="w-12 h-12 flex items-center justify-center rounded-lg bg-white/80 backdrop-blur border shadow hover:bg-white transition-colors"
-                title="설정"
-              >
-                설정
-              </button>
-              <button
-                onClick={toggleTrophy}
-                className="w-12 h-12 flex items-center justify-center rounded-lg bg-white/80 backdrop-blur border shadow hover:bg-white transition-colors"
-                title="업적"
-              >
-                업적
-              </button>
-              <button
-                onClick={moveToGatcha}
-                className="w-12 h-12 flex items-center justify-center rounded-lg bg-white/80 backdrop-blur border shadow hover:bg-white transition-colors"
-                title="상점"
-              >
-                상점
-              </button>
-            </div>
+            <Floating />
             <div className="text-center">
               <div className="h-10 w-10 mx-auto mb-4 rounded-full border-2 border-gray-900 border-t-transparent animate-spin" />
               <p className="text-sm text-gray-600">결과를 불러오는 중…</p>
             </div>
           </div>
         </div>
-        {openSetting && <SettingModal onClose={toggleSetting} />}
-        {openTrophy && <TrophyModal onClose={toggleTrophy} />}
       </>
     );
   }
@@ -125,29 +88,7 @@ export default function Result() {
         <div className="relative w-full h-full flex flex-col">
           <Header />
           <div className="flex-1 bg-green-200 flex items-center justify-center relative">
-            <div className="absolute left-4 top-1/4 transform -translate-y-1/2 flex flex-col space-y-3 z-10">
-              <button
-                onClick={toggleSetting}
-                className="w-12 h-12 flex items-center justify-center rounded-lg bg-white/80 backdrop-blur border shadow hover:bg-white transition-colors"
-                title="설정"
-              >
-                설정
-              </button>
-              <button
-                onClick={toggleTrophy}
-                className="w-12 h-12 flex items-center justify-center rounded-lg bg-white/80 backdrop-blur border shadow hover:bg-white transition-colors"
-                title="업적"
-              >
-                업적
-              </button>
-              <button
-                onClick={moveToGatcha}
-                className="w-12 h-12 flex items-center justify-center rounded-lg bg-white/80 backdrop-blur border shadow hover:bg-white transition-colors"
-                title="상점"
-              >
-                상점
-              </button>
-            </div>
+            <Floating />
             <div className="text-center">
               <h2 className="text-xl font-bold text-red-600 mb-2">에러</h2>
               <p className="text-sm text-gray-500">
@@ -162,8 +103,6 @@ export default function Result() {
             </div>
           </div>
         </div>
-        {openSetting && <SettingModal onClose={toggleSetting} />}
-        {openTrophy && <TrophyModal onClose={toggleTrophy} />}
       </>
     );
   }
@@ -173,29 +112,7 @@ export default function Result() {
       <div className="relative w-full h-full flex flex-col">
         <Header />
         <div className="flex-1 bg-green-200 flex items-center justify-center relative">
-          <div className="absolute left-4 top-1/4 transform -translate-y-1/2 flex flex-col space-y-3 z-10">
-            <button
-              onClick={toggleSetting}
-              className="w-12 h-12 flex items-center justify-center rounded-lg bg-white/80 backdrop-blur border shadow hover:bg-white transition-colors"
-              title="설정"
-            >
-              설정
-            </button>
-            <button
-              onClick={toggleTrophy}
-              className="w-12 h-12 flex items-center justify-center rounded-lg bg-white/80 backdrop-blur border shadow hover:bg-white transition-colors"
-              title="업적"
-            >
-              업적
-            </button>
-            <button
-              onClick={moveToGatcha}
-              className="w-12 h-12 flex items-center justify-center rounded-lg bg-white/80 backdrop-blur border shadow hover:bg-white transition-colors"
-              title="상점"
-            >
-              상점
-            </button>
-          </div>
+          <Floating />
           <div className="text-center">
             <h2 className="text-3xl font-extrabold mb-2">Game Over</h2>
             <p className="text-lg mb-4">
@@ -218,8 +135,6 @@ export default function Result() {
           </div>
         </div>
       </div>
-      {openSetting && <SettingModal onClose={toggleSetting} />}
-      {openTrophy && <TrophyModal onClose={toggleTrophy} />}
     </>
   );
 }
