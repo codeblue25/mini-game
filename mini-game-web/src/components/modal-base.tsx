@@ -31,33 +31,32 @@ export function ModalBase({
   }, []);
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center">
-      <div
-        className="absolute inset-0 bg-black/40 backdrop-blur-sm"
-        onClick={onClose}
-      />
+    <div className="fixed inset-0 z-50 flex items-end justify-center pb-8">
+      <div className="absolute inset-0 bg-black/40" onClick={onClose} />
       <div
         ref={panelRef}
         role="dialog"
         aria-modal="true"
         aria-label={title ?? "dialog"}
         tabIndex={-1}
-        className={`relative w-[92vw] max-w-md max-h-[82vh] overflow-auto rounded-2xl
-                    bg-white shadow-xl ring-1 ring-black/10
-                    p-5 outline-none transition
+        className={`relative w-[92vw] max-w-md max-h-[82vh] overflow-auto rounded-3xl
+                    bg-white shadow-xl
+                    outline-none transition
                     ${className}`}
       >
-        <button
-          onClick={onClose}
-          className="absolute top-3 right-3 rounded-full px-2 py-1 text-sm
-                     bg-gray-100 hover:bg-gray-200 active:scale-95"
-          aria-label="닫기"
-        >
-          ✕
-        </button>
+        {/* 상단 핸들바 */}
+        <div className="flex justify-center pt-3 pb-2">
+          <div className="w-12 h-1 bg-gray-300 rounded-full"></div>
+        </div>
 
-        {title && <h3 className="text-lg font-semibold mb-3">{title}</h3>}
-        {children}
+        <div className="px-6 pb-6">
+          {title && (
+            <h3 className="text-xl font-semibold mb-6 text-gray-800">
+              {title}
+            </h3>
+          )}
+          {children}
+        </div>
       </div>
     </div>
   );

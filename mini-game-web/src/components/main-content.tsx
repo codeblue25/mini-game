@@ -1,3 +1,5 @@
+import backgroundImage from "@/assets/background.svg";
+
 export default function MainContent({
   children,
 }: {
@@ -10,8 +12,13 @@ export default function MainContent({
         h-full
         flex flex-col
         overflow-hidden
-        bg-blue-50 border-2 border-indigo-500
       "
+      style={{
+        backgroundImage: `url(${backgroundImage})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+      }}
     >
       <div className="w-full h-full">{children}</div>
     </section>
